@@ -1,0 +1,17 @@
+<section *ngIf="communesIsLoaded">
+
+
+<ngx-charts-bar-vertical 
+    [view]="[1000,400]"
+    [results]="communesForGraph"
+    [xAxisLabel]="'Communes'"
+    [legendTitle]="'Population par commune'"
+    [yAxisLabel]="'Population'"
+    [legend]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+</ngx-charts-bar-vertical>
+</section>

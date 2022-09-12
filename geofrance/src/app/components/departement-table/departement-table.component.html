@@ -1,0 +1,39 @@
+<!-- Boucle *ngIf pour n'afficher le bouton que tant que rien n'est affiché -->
+<button *ngIf="!departementsIsLoaded" type="button" class="btn btn-primary" (click)="loadDepartements.emit()">
+    Charger les départements
+</button>
+
+
+<!-- Permet d'éviter aux données de charger des le début de la page mais au click sur le bouton -->
+<ng-container *ngIf="departementsIsLoaded"> 
+
+<div>   
+    <label for="search" class="form-label"> Rechercher un département</label>
+    <input type="text" class="form-control" name="search" placeholder="Ex: Orne" [(ngModel)]="search" autocomplete="off">
+</div> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Code</th>
+            <th scope="col">Code région</th>
+            <th scope="col">#</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let departement of getDepartements()">
+            <td>{{departement.nom}}</td>
+            <td>{{departement.code}}</td>
+            <td>{{departement.codeRegion}}</td>
+            <td (click)="loadCommunes.emit(departement.code)" >  <fa-icon  [icon]="faSearch"></fa-icon></td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination [totalItems]="getLength()" [(ngModel)]="currentPage">
+
+</pagination>
+
+</ng-container>
